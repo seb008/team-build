@@ -10,9 +10,21 @@ import justifLignesAchatRoute from "./routes/justifLignesAchat.route.js"
 import lignesMoRoute from "./routes/lignesMo.route.js"
 import blocChantiersRoute from "./routes/blocChantiers.route.js"
 import cookieParser from "cookie-parser";
+import cors from "cors"
 
 const app = express();
 dotenv.config();
+
+const corsOptions = {
+  origin: process.env.CLIENT_URL,
+  credentials: true,
+  'allowedHeaders': ['sessionId', 'Content-Type'],
+  'exposedHeaders': ['sessionId'],
+  'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  'preflightContinue': false
+}
+app.use(cors(corsOptions));
+
 
 const connect = async () => {
   try {

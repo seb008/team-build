@@ -1,8 +1,25 @@
 import SideBar from "../../components/sideBar/SideBar.jsx"
 import NavBar from "../../components/navBar/NavBar.jsx"
+import { useEffect } from "react";
+import axios from "axios";
 import "./home.scss";
 
 const Home = () => {
+
+
+  useEffect(() => {
+    const fetchAffaires = async () => {
+      try {
+        const res = await axios.get(/affaires/);
+        console.log(res.data); 
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchAffaires();
+  }, []); 
+  
+
   return (
     <div className="home">
     < SideBar />
