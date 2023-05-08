@@ -1,0 +1,19 @@
+.navbar{
+    height: 50px;
+    border-bottom: 0.5px solid rgb(220, 74, 74);
+    display: flex;
+    font-size: 14px;
+
+    .wrapper{
+        width: 100%;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        
+        .search{
+            display: flex;
+
+        }
+
+    }
+}

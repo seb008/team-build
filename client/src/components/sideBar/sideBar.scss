@@ -1,0 +1,43 @@
+.sidebar{
+    flex: 1;
+    border-right: 0.5px solid rgb(220, 74, 74);
+    min-height: 100vh;
+    background-color: white;
+
+    .top{
+        height: 50px;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        border-bottom: 0.5px solid rgb(220, 74, 74) ;
+
+        .logo{
+            font-size: 20px;
+            font-weight: bold;
+            color: cornflowerblue;
+            
+        }
+    }
+   
+
+    .center{
+
+        padding-left: 10px;
+
+        ul{
+            list-style: none;
+            margin: 0;
+        }
+        li{
+            display: flex;
+            padding: 5px;
+            cursor: pointer;
+
+            &:hover{
+                background-color: rgb(122, 154, 214);
+                color: wheat;
+                border-radius: 5px;
+            }
+        }
+    }
+}
