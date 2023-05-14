@@ -1,34 +1,24 @@
+import React, { useState } from "react";
 import NavBar from "../../components/navBar/NavBar";
 import SideBar from "../../components/sideBar/SideBar";
-import CreatBlocAffaire from "../../components/creatBlocAffaire/CraetBlocAffaire.jsx";
-import { useState } from "react";
-import axios from "axios";
+import { Link } from "react-router-dom";
+import ReactModal from "react-modal";
+
 import "./affaire.scss";
+import AffaireForm from "../../components/AffaireForm/AffaireForm";
+import Datatable from "../../components/datatable/Datatable";
+import { affairesColumns } from "../../datatablesourse.js";
 
 const Affaire = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    adress: "",
-    montantTotal: 0,
-    refAffaire: "",
-    description: "",
-  });
+  const [affaireFormVisible, setAffaireFormVisible] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const { name, adress, montantTotal, refAffaire, description } = formData;
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleAffaireFormClick = () => {
+    setModalIsOpen(true);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try { 
-      const newAffaire = await axios.post(/affaires/, formData);
-      console.log(newAffaire);
-      // Traitez ici la réponse de la requête POST
-    } catch (error) {
-      console.log(error);
-    }
+  const closeModal = () => {
+    setModalIsOpen(false);
   };
 
   return (
@@ -37,53 +27,25 @@ const Affaire = () => {
       <div className="affaireContainer">
         <NavBar />
         <div className="top">
-          <h1>Nouvelle Affaire</h1>
-          <div className="form">
-            <form onSubmit={handleSubmit}>
-              <label>Nom :</label>
-              <input
-                type="text"
-                name="name"
-                value={name}
-                onChange={handleChange}
-                required
-              />
-
-              <label>Adresse :</label>
-              <input
-                type="text"
-                name="adress"
-                value={adress}
-                onChange={handleChange}
-                required
-              />
-
-              <label>Montant Total :</label>
-              <input
-                type="number"
-                name="montantTotal"
-                value={montantTotal}
-                onChange={handleChange}
-                required
-              />
-
-              <label>Référence de l'affaire :</label>
-              <input
-                type="text"
-                name="refAffaire"
-                value={refAffaire}
-                onChange={handleChange}
-              />
-
-              <label>Description :</label>
-              <textarea
-                name="description"
-                value={description}
-                onChange={handleChange}
-              ></textarea>
-
-              <button type="submit">Créer une nouvelle affaire</button>
-            </form>
+          <h1>Affaires</h1>
+          <div className="affairform">
+            {!affaireFormVisible && (
+              <div className="button">
+                <button onClick={handleAffaireFormClick}>Créer une affaire</button>
+              </div>
+            )}
+            <ReactModal isOpen={modalIsOpen} onRequestClose={closeModal}>
+              <div className="modal-header">
+                <h2>Fenêtre modale</h2>
+                <button onClick={closeModal}>X</button>
+              </div>
+              <div className="modal-content">
+                <AffaireForm />
+              </div>
+            </ReactModal>
+          </div>
+          <div className="listaffaire">
+            <Datatable columns={affairesColumns} />
           </div>
           <div className="blocAffaire"></div>
         </div>

@@ -8,7 +8,7 @@ const BlocAffaireSchema = new mongoose.Schema(
     },
     montantTotal: {
       type: Number,
-      require: true,
+      require: false
     },
     idLigneMo: {
       type: [String],

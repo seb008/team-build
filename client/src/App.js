@@ -1,15 +1,22 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/home/Home.jsx";
-import Affaire from "./pages/affaire/Affaire.jsx"
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./pages/home/Home";
+import Affaire from "./pages/affaire/Affaire";
+import Modal from "react-modal";
+import CreatBlocAffaire from "./pages/creatBlocAffaire/CreatBlocAffaire";
+
+// Définir l'élément racine de l'application pour l'accessibilité
+Modal.setAppElement("#root");
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/affaire" element={<Affaire />} />
+        <Route path="/affaires" element={<Affaire />} />
+        <Route path="/affaires/:id" element={<CreatBlocAffaire />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 

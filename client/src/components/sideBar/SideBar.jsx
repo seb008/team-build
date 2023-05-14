@@ -11,7 +11,7 @@ const SideBar = () => {
       </div>
       <div className="center">
         <ul>
-          <Link to="/affaire" style={{ textDecoration: "none" }}>
+          <Link to="/affaires" style={{ textDecoration: "none" }}>
             <li>
               <span>Affaire</span>
             </li>
