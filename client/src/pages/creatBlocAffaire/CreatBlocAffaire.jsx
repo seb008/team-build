@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import useFetch from "../../hooks/useFetch.js";
-import CreatBlocAffaireComponent from "../../components/creatBlocAffaireComponenet/CraetBlocAffaireComponent"
+import CreatBlocAffaireComponent from "../../components/creatBlocAffaireComponenet/CraetBlocAffaireComponent";
+import ResultBlocAffaire from "../../components/ResultBlocAffaire/ResultBlocAffaire";
 import "./creatBlocAffaire.scss";
 
 const CreatBlocAffaire = () => {
@@ -19,8 +20,11 @@ const CreatBlocAffaire = () => {
           Montant Total de l'affaire :{data.montantTotal}€
         </span>
       </div>
+      <div className="resultblocaffaire">
+        <ResultBlocAffaire id={id}/>
+      </div>
       <div className="formcreatblocaffairecomponent">
-        <CreatBlocAffaireComponent id={id}/>
+        <CreatBlocAffaireComponent id={id} />
       </div>
     </div>
   );

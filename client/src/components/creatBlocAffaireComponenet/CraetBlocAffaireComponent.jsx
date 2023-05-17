@@ -1,5 +1,4 @@
-import "./creatBlocAffaireComponent.scss";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MoForm from "../MoForm/MoForm.jsx";
 import AchatForm from "../AchatForm/AchatForm.jsx";
 import axios from "axios";
@@ -9,6 +8,7 @@ const CreatBlocAffaireComponent = ({ id }) => {
   const [results, setResults] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [titleBloc, setTitleBloc] = useState("");
+  const [idbloc, setIdBloc] = useState("");
 
   const handleSelectChange = (e) => {
     setFormType(e.target.value);
@@ -20,6 +20,7 @@ const CreatBlocAffaireComponent = ({ id }) => {
 
   const handleSubmit = (result) => {
     setResults([...results, { ...result, formType }]);
+    setFormType("");
   };
 
   const handleAddBlocClick = () => {
@@ -36,8 +37,9 @@ const CreatBlocAffaireComponent = ({ id }) => {
       const newBlocAffaire = await axios.post(`/blocAffaires/${id}`, {
         titleBloc: titleBloc,
       });
-      console.log(newBlocAffaire);
-    
+      const createdBloc = newBlocAffaire.data;
+      setIdBloc(createdBloc._id);
+      console.log(idbloc);
     } catch (error) {
       console.log(error);
     }
@@ -47,10 +49,17 @@ const CreatBlocAffaireComponent = ({ id }) => {
     setTitleBloc("");
   };
 
+  useEffect(() => {
+    if (idbloc !== "") {
+      setShowForm(false);
+    }
+  }, [idbloc]);
+
   return (
     <div>
+      <button onClick={handleAddBlocClick}>+</button>
       {showForm ? (
-        <>
+        <div className="formcreatbloc">
           <input
             type="text"
             value={titleBloc}
@@ -58,20 +67,28 @@ const CreatBlocAffaireComponent = ({ id }) => {
             placeholder="Titre du bloc"
           />
           <button onClick={handleValidation}>Valider</button>
+        </div>
+      ) : null}
+      {idbloc !== "" && (
+        <div className="formligne">
           <select onChange={handleSelectChange}>
             <option value="">--Choisissez une option--</option>
             <option value="MO">MO</option>
             <option value="Achat">Achat</option>
           </select>
           {formType === "MO" && (
-            <MoForm onSubmit={(data) => handleSubmit(data)} />
+            <MoForm
+              onSubmit={(data) => handleSubmit(data, idbloc)}
+              idbloc={idbloc}
+            />
           )}
           {formType === "Achat" && (
-            <AchatForm onSubmit={(data) => handleSubmit(data)} />
+            <AchatForm
+              onSubmit={(data) => handleSubmit(data, idbloc)}
+              idbloc={idbloc}
+            />
           )}
-        </>
-      ) : (
-        <button onClick={handleAddBlocClick}>+</button>
+        </div>
       )}
       <div className="container-affaire">
         <ul>

@@ -1,4 +1,5 @@
 import Affaire from "../models/affaire.model.js";
+import BlocAffaire from "../models/blocAffaire.model.js";
 
 //creat affaire
 
@@ -62,3 +63,18 @@ export const getAllAffaire = async (req, res, next) => {
         res.status(500).json(err);
     }
 }
+
+// get bloc affaire
+export const getBlocAffaireAffaire = async (req, res, next) => {
+    try {
+      const affaire = await Affaire.findById(req.params.id);
+      const list = await Promise.all(
+        affaire.idBlocAffaire.map(async (bloc) => {
+          return await BlocAffaire.findById(bloc);
+        })
+      );
+      res.status(200).json(list);
+    } catch (err) {
+      next(err);
+    }
+  };

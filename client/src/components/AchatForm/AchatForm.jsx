@@ -1,16 +1,24 @@
-import "./achatForm.scss"
 import React, { useState } from "react";
+import axios from "axios";
+import "./achatForm.scss";
 
-const AchatForm = ({ onSubmit }) => {
+const AchatForm = ({ onSubmit, idbloc }) => {
   const [titreAchat, setTitreAchat] = useState("");
   const [montantAchat, setMontantAchat] = useState(0);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const result = { titreAchat, montantAchat };
-    onSubmit(result);
+    const formData = { titreAchat, montantAchat };
+
+    onSubmit(formData);
     setTitreAchat("");
     setMontantAchat(0);
+    try {
+      const newLigneAchat = await axios.post(`/lignesAchat/${idbloc}`, formData);
+      console.log(newLigneAchat);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

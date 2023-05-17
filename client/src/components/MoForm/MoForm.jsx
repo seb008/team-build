@@ -1,20 +1,31 @@
+import React, { useState } from "react";
+import axios from "axios";
 import "./moForm.scss";
 
-import React, { useState } from "react";
-
-const MoForm = ({ onSubmit }) => {
+const MoForm = ({ onSubmit, idbloc }) => {
   const [titre, setTitre] = useState("");
   const [montant, setMontant] = useState(0);
   const [jours, setJours] = useState(0);
   const [personnes, setPersonnes] = useState(0);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSubmit({ titre, montant, jours, personnes });
+
+    const formData = { titre, montant, jours, personnes };
+
+    onSubmit(formData);
+
     setTitre("");
     setMontant(0);
     setJours(0);
     setPersonnes(0);
+
+    try {
+      const newLigneMo = await axios.post(`/lignesMo/${idbloc}`, formData);
+      console.log(newLigneMo);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -52,7 +63,7 @@ const MoForm = ({ onSubmit }) => {
           type="number"
           value={personnes}
           onChange={(e) => setPersonnes(e.target.value)}
-        />{" "}
+        />
       </label>
       <br />
       <button type="submit">Valider</button>
