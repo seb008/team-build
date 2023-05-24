@@ -4,6 +4,7 @@ import {
   deleteBlocAffaire,
   getAllBlocAffaire,
   getBlocAffaire,
+  getLignesAchatMo,
   updateBlocAffaire,
 } from "../controllers/blocAffaire.controller.js";
 
@@ -23,5 +24,8 @@ router.get("/:id", getBlocAffaire);
 
 //Get All bloc Affaire
 router.get("/", getAllBlocAffaire);
+
+//Get Lignes
+router.get("/lignes/:id", getLignesAchatMo);
 
 export default router;

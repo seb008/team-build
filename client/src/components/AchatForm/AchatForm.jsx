@@ -3,18 +3,21 @@ import axios from "axios";
 import "./achatForm.scss";
 
 const AchatForm = ({ onSubmit, idbloc }) => {
-  const [titreAchat, setTitreAchat] = useState("");
-  const [montantAchat, setMontantAchat] = useState(0);
+  const [titre, setTitre] = useState("");
+  const [montant, setMontant] = useState(0);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = { titreAchat, montantAchat };
+    const formData = { titre, montant };
 
     onSubmit(formData);
-    setTitreAchat("");
-    setMontantAchat(0);
+    setTitre("");
+    setMontant(0);
     try {
-      const newLigneAchat = await axios.post(`/lignesAchat/${idbloc}`, formData);
+      const newLigneAchat = await axios.post(`/lignesAchat/${idbloc}`, {
+        titleLigneAchat :titre ,
+        montantLigneAchat : montant
+      });
       console.log(newLigneAchat);
     } catch (error) {
       console.log(error);
@@ -30,8 +33,8 @@ const AchatForm = ({ onSubmit, idbloc }) => {
           <input
             type="text"
             id="titreAchat"
-            value={titreAchat}
-            onChange={(e) => setTitreAchat(e.target.value)}
+            value={titre}
+            onChange={(e) => setTitre(e.target.value)}
           />
         </div>
         <div>
@@ -39,8 +42,8 @@ const AchatForm = ({ onSubmit, idbloc }) => {
           <input
             type="number"
             id="montantAchat"
-            value={montantAchat}
-            onChange={(e) => setMontantAchat(e.target.value)}
+            value={montant}
+            onChange={(e) => setMontant(e.target.value)}
           />
         </div>
         <button type="submit">Enregistrer</button>

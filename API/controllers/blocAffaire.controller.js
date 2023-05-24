@@ -1,5 +1,7 @@
 import Affaire from "../models/affaire.model.js";
 import BlocAffaire from "../models/blocAffaire.model.js";
+import LigneAchat from "../models/ligneAchat.model.js"
+import LigneMo from "../models/ligneMo.model.js"
 
 //creer bloc Affaire
 
@@ -77,6 +79,27 @@ export const getAllBlocAffaire = async (req, res, next) => {
   try {
     const blocsAffaire = await BlocAffaire.find();
     res.status(200).json(blocsAffaire);
+  } catch (err) {
+    next(err);
+  }
+};
+
+// get lignes
+export const getLignesAchatMo = async (req, res, next) => {
+  try {
+    const bloc = await BlocAffaire.findById(req.params.id);
+    const lignesAchat = await Promise.all(
+      bloc.idLigneAchat.map(async (ligne) => {
+        return await LigneAchat.findById(ligne);
+      })
+    );
+    const lignesMO = await Promise.all(
+      bloc.idLigneMo.map(async (ligne) => {
+        return await LigneMo.findById(ligne);
+      })
+    );
+    const lignes = lignesAchat.concat(lignesMO);
+    res.status(200).json(lignes);
   } catch (err) {
     next(err);
   }

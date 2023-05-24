@@ -13,8 +13,8 @@ const AffaireForm = () => {
   });
 
   const { name, adress, montantTotal, refAffaire, description } = formData;
-
   const [shouldRefresh, setShouldRefresh] = useState(false);
+  
   useEffect(() => {
     if (shouldRefresh) {
       window.location.reload();

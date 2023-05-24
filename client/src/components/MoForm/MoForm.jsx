@@ -21,7 +21,12 @@ const MoForm = ({ onSubmit, idbloc }) => {
     setPersonnes(0);
 
     try {
-      const newLigneMo = await axios.post(`/lignesMo/${idbloc}`, formData);
+      const newLigneMo = await axios.post(`/lignesMo/${idbloc}`, {
+        titleLigneMo : titre,
+        montantLigneMo : montant,
+        duration : jours ,
+        workersNeed : personnes,
+      });
       console.log(newLigneMo);
     } catch (error) {
       console.log(error);
