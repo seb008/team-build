@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import useFetch from "../../hooks/useFetch";
-import ReactModal from "react-modal";
 import ModifBlocAffaire from "../ModifBlocAffaire/ModifBlocAffaire";
 import "./resultBlocAffaire.scss";
 
@@ -73,54 +72,28 @@ const ResultBlocAffaire = ({ id }) => {
   return (
     <div>
       ResultFormBlocAffaire = {montantTotalGlobal} €
-      {bloc?.map((blocItem, i) => (
-        <div className="blocaffaire" key={i}>
-          <ul>
-            <li onClick={() => toggleSousParties(i)}>
-              {blocItem.titleBloc} {blocItem._id}{" "}
-              <span>
-                Somme des montants de toutes les lignes :{" "}
-                {montantsTotals[i] || 0} €
-              </span>
-            </li>
-          </ul>
+      {bloc?.map(
+        (blocItem, i) =>
+          blocItem && (
+            <div className="blocaffaire" key={i}>
+              <ul>
+                <li onClick={() => toggleSousParties(i)}>
+                  {blocItem.titleBloc} {blocItem._id}{" "}
+                  <span>
+                    Somme des montants de toutes les lignes :{" "}
+                    {montantsTotals[i] || 0} €
+                  </span>
+                </li>
+              </ul>
 
-          {i === activeBlocIndex && (
-            <div>
-              <button className="btnmodifier" onClick={openModifBloc}>
-                modifier
-              </button>
-              <ReactModal isOpen={modalIsOpen} onRequestClose={closeModal}>
-                <div className="modal-header">
-                  <h2>Fenêtre modale</h2>
-                  <button onClick={closeModal}>X</button>
-                </div>
+              {i === activeBlocIndex && (
                 <div className="modal-content">
                   <ModifBlocAffaire idbloc={bloc[i]._id} />
                 </div>
-              </ReactModal>
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th>Nom</th>
-                    <th>Montant</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {lignes.map((ligne) => (
-                    <tr key={ligne._id}>
-                      <td>{ligne.titleLigneMo || ligne.titleLigneAchat}</td>
-                      <td>
-                        {ligne.montantLigneMo || ligne.montantLigneAchat} €
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              )}
             </div>
-          )}
-        </div>
-      ))}
+          )
+      )}
     </div>
   );
 };

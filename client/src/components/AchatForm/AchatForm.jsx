@@ -1,29 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./achatForm.scss";
 
-const AchatForm = ({ onSubmit, idbloc }) => {
+const AchatForm = ({ onSubmit, idbloc, initialData }) => {
   const [titre, setTitre] = useState("");
   const [montant, setMontant] = useState(0);
+  const isUpdate = !!initialData;
+
+  useEffect(() => {
+    if (initialData) {
+      setTitre(initialData.titleLigneAchat);
+      setMontant(initialData.montantLigneAchat);
+    }
+  }, [initialData]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = { titre, montant };
+  
 
-    onSubmit(formData);
-    setTitre("");
-    setMontant(0);
     try {
-      const newLigneAchat = await axios.post(`/lignesAchat/${idbloc}`, {
-        titleLigneAchat :titre ,
-        montantLigneAchat : montant
-      });
-      console.log(newLigneAchat);
+      if (isUpdate) {
+        const updatedLigneAchat = await axios.put(`/lignesAchat/${initialData._id}`, {
+          titleLigneAchat: titre,
+          montantLigneAchat: montant
+        });
+        console.log(updatedLigneAchat);
+      } else {
+        const newLigneAchat = await axios.post(`/lignesAchat/${idbloc}`, {
+          titleLigneAchat: titre,
+          montantLigneAchat: montant
+        });
+        console.log(newLigneAchat);
+      }
+      await onSubmit(formData);
+      setTitre("");
+      setMontant(0);
+      
     } catch (error) {
       console.log(error);
     }
   };
-
   return (
     <div>
       <h2>Formulaire Achat</h2>
@@ -46,7 +63,7 @@ const AchatForm = ({ onSubmit, idbloc }) => {
             onChange={(e) => setMontant(e.target.value)}
           />
         </div>
-        <button type="submit">Enregistrer</button>
+        <button type="submit">{isUpdate ? 'Update' : 'Enregistrer'}</button>
       </form>
     </div>
   );

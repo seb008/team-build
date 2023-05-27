@@ -1,7 +1,9 @@
-.home {
-    display: flex;
-
-    .homeContainer {
-        flex: 5;
-    }
+.homeContainer {
+  display: flex;
+    width: 100%;
+    background-color: white;
+  .container {
+    flex: 5;
+  }
+  
 }

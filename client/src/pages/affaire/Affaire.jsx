@@ -8,6 +8,9 @@ import "./affaire.scss";
 import AffaireForm from "../../components/AffaireForm/AffaireForm";
 import Datatable from "../../components/datatable/Datatable";
 import { affairesColumns } from "../../datatablesourse.js";
+import Modal from "../../components/Modal/Modal";
+
+
 
 const Affaire = () => {
   const [affaireFormVisible, setAffaireFormVisible] = useState(false);
@@ -34,15 +37,7 @@ const Affaire = () => {
                 <button onClick={handleAffaireFormClick}>Créer une affaire</button>
               </div>
             )}
-            <ReactModal isOpen={modalIsOpen} onRequestClose={closeModal}>
-              <div className="modal-header">
-                <h2>Fenêtre modale</h2>
-                <button onClick={closeModal}>X</button>
-              </div>
-              <div className="modal-content">
-                <AffaireForm />
-              </div>
-            </ReactModal>
+            <Modal title="Fenêtre Modale" content={<AffaireForm />} isOpen={modalIsOpen} onClose={closeModal} />
           </div>
           <div className="listaffaire">
             <Datatable columns={affairesColumns} />
