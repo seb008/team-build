@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./moForm.scss";
 
-const MoForm = ({ onSubmit, idbloc, initialData }) => {
+const MoForm = ({ onSubmit, idbloc, initialData, onUpdate }) => {
   const [titre, setTitre] = useState("");
   const [montant, setMontant] = useState(0);
   const [jours, setJours] = useState(0);
@@ -22,25 +22,26 @@ const MoForm = ({ onSubmit, idbloc, initialData }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = { titre, montant, jours, personnes };
-  
 
     try {
       if (isUpdate) {
-        const updatedLigneMo = await axios.put(`/lignesMo/${idbloc}/${initialData._id}`, {
+        const updatedLigneMo = await axios.put(`/lignesMo/${initialData._id}`, {
           titleLigneMo: titre,
           montantLigneMo: montant,
           duration: jours,
           workersNeed: personnes,
         });
         console.log(updatedLigneMo);
+        onUpdate();
       } else {
         const newLigneMo = await axios.post(`/lignesMo/${idbloc}`, {
-          titleLigneMo : titre,
-          montantLigneMo : montant,
-          duration : jours ,
-          workersNeed : personnes,
+          titleLigneMo: titre,
+          montantLigneMo: montant,
+          duration: jours,
+          workersNeed: personnes,
         });
         console.log(newLigneMo);
+        onUpdate();
       }
       await onSubmit(formData);
       setTitre("");
@@ -53,45 +54,44 @@ const MoForm = ({ onSubmit, idbloc, initialData }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Titre de la tache :
+    <div className="moform">
+      <form onSubmit={handleSubmit}>
+
+        <label>Titre de la tache :</label>
         <input
           type="text"
+          className="text"
           value={titre}
           onChange={(e) => setTitre(e.target.value)}
         />
-      </label>
-      <br />
-      <label>
-        Montant de la tache :
+
+        <label>Montant de la tache :</label>
         <input
           type="number"
+          className="montantmo"
           value={montant}
           onChange={(e) => setMontant(e.target.value)}
         />
-      </label>
-      <br />
-      <label>
-        Nombre de jours :
+
+        <label>Nombre de jours : </label>
         <input
           type="number"
+          className="number"
           value={jours}
           onChange={(e) => setJours(e.target.value)}
         />
-      </label>
-      <br />
-      <label>
-        Nombre de personnes :
+
+        <label>Nombre de personnes : </label>
         <input
           type="number"
+          className="numberusers"
           value={personnes}
           onChange={(e) => setPersonnes(e.target.value)}
         />
-      </label>
-      <br />
-      <button type="submit">{isUpdate ? 'Update' : 'Valider'}</button>
-    </form>
+        
+        <button type="submit">{isUpdate ? "Update" : "Valider"}</button>
+      </form>
+    </div>
   );
 };
 

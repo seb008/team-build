@@ -1,4 +1,5 @@
 import ReactModal from "react-modal";
+import "./modal.scss"
 
     const Modal = (props) => {
         const { title, content, isOpen, onClose } = props;

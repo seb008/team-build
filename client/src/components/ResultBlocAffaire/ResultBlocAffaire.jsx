@@ -4,6 +4,8 @@ import useFetch from "../../hooks/useFetch";
 import ModifBlocAffaire from "../ModifBlocAffaire/ModifBlocAffaire";
 import "./resultBlocAffaire.scss";
 
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+
 const ResultBlocAffaire = ({ id }) => {
   const { data: bloc, loading, error } = useFetch(`/affaires/bloc/${id}`);
   const [activeBlocIndex, setActiveBlocIndex] = useState(null);
@@ -11,6 +13,9 @@ const ResultBlocAffaire = ({ id }) => {
   const [montantsLignes, setMontantsLignes] = useState([]);
   const [montantsTotals, setMontantsTotals] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [showModifBloc, setShowModifBloc] = useState(false);
+  const [totalDays, setTotalDays] = useState(0);
+  const [putCompleted, setPutCompleted] = useState(false);
 
   const toggleSousParties = async (i) => {
     if (i === activeBlocIndex) {
@@ -25,6 +30,7 @@ const ResultBlocAffaire = ({ id }) => {
         const montants = res.data.map(
           (ligne) => ligne.montantLigneMo || ligne.montantLigneAchat
         );
+        setShowModifBloc(!showModifBloc);
         setMontantsLignes(montants);
         console.log(res.data);
       } catch (err) {
@@ -57,38 +63,68 @@ const ResultBlocAffaire = ({ id }) => {
     calculateTotals();
   }, [bloc]);
 
+  useEffect(() => {
+    const calculateTotalDays = async () => {
+      const days = await Promise.all(
+        bloc?.map(async (blocItem) => {
+          try {
+            const res = await axios.get(`/blocAffaires/lignes/${blocItem._id}`);
+            const moLines = res.data.filter((ligne) => ligne.titleLigneMo);
+            const total = moLines.reduce(
+              (acc, ligne) => acc + ligne.duration,
+              0
+            );
+            return total;
+          } catch (err) {
+            console.log(err);
+            return 0;
+          }
+        })
+      );
+      const total = days.reduce((acc, day) => acc + day, 0);
+      setTotalDays(total);
+      setPutCompleted(false); 
+    };
+
+    calculateTotalDays();
+  }, [bloc,putCompleted]);
+
   const montantTotalGlobal = montantsTotals.reduce(
     (acc, montant) => acc + montant,
     0
   );
 
-  const openModifBloc = () => {
-    setModalIsOpen(true);
-  };
-  const closeModal = () => {
-    setModalIsOpen(false);
-  };
-
   return (
-    <div>
-      ResultFormBlocAffaire = {montantTotalGlobal} €
+    <div className="resultblocaffaire">
+      <div className="result">
+        <span>Montant Total des Blocs Affaire : = {montantTotalGlobal} €  </span>   
+         <span> Nombre de jours total ={" "} {totalDays} {" "} Jrs </span> 
+      </div>
+
       {bloc?.map(
         (blocItem, i) =>
           blocItem && (
-            <div className="blocaffaire" key={i}>
-              <ul>
-                <li onClick={() => toggleSousParties(i)}>
-                  {blocItem.titleBloc} {blocItem._id}{" "}
-                  <span>
-                    Somme des montants de toutes les lignes :{" "}
-                    {montantsTotals[i] || 0} €
-                  </span>
-                </li>
-              </ul>
-
+            <div
+              className={`blocaffaire ${i === activeBlocIndex ? "active" : ""}`}
+              key={i}
+            >
+              <div className="table">
+                <ul>
+                  <li onClick={() => toggleSousParties(i)}>
+                    <span className="titleli">{blocItem.titleBloc}</span>
+                    <span className="spanli">
+                      Somme des montants des lignes :
+                    </span>
+                    <span className="montantli">
+                      {montantsTotals[i] || 0} €
+                    </span>
+                    <ArrowDropDownIcon className="icon" />
+                  </li> 
+                </ul>
+              </div>
               {i === activeBlocIndex && (
                 <div className="modal-content">
-                  <ModifBlocAffaire idbloc={bloc[i]._id} />
+                   <ModifBlocAffaire idbloc={bloc[i]._id} onUpdate={setPutCompleted} />
                 </div>
               )}
             </div>

@@ -1,0 +1,48 @@
+.card {
+  margin: 10px;
+  display: flex;
+  width: 300px;
+  height: 150px;
+  border: 1px solid;
+
+  .left {
+    display: flex;
+    flex: 1;
+
+    .file {
+      display: flex;
+
+      .img {
+        width: 50px;
+        height: 10px;
+      }
+    }
+  }
+
+  .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 3;
+    padding: 10px; /* Ajout d'une marge interne */
+
+    .title {
+      font-weight: bold;
+      text-transform: capitalize;
+    }
+
+    .adress {
+      margin-top: 10px; /* Ajout d'une marge supérieure */
+    }
+
+    .button {
+      background-color: rgba(51, 154, 51, 0.869);
+      color: white;
+      padding: 5px 10px;
+      margin-left: 70px;
+      border-radius: 5px;
+      cursor: pointer;
+      align-self: flex-end; 
+    }
+  }
+}

@@ -1,0 +1,42 @@
+.achatform {
+  
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+
+  form {
+
+    display: flex;
+    flex-direction: column;
+
+
+    input {
+      background-color: rgb(223, 230, 233);
+      border: 1px solid rgb(184, 190, 192);
+      border-radius: 0px 5px 0px 0px;
+      margin: 10px;
+      height: 25px;
+      
+    }
+    .titreAchat{
+        width: 700px;
+    }
+
+    .montantAchat{
+        width: 300px;
+    }
+    button {
+      width: 300px;
+      height: 30px;
+      margin-top: 30px;
+      border: 1px solid rgb(184, 190, 192);
+      border-radius: 5px;
+      cursor: pointer;
+      &:hover {
+        background-color: rgba(51, 154, 51, 0.869);
+        color: wheat;
+        border-radius: 10px;
+      }
+    }
+  }
+}

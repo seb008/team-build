@@ -42,27 +42,25 @@ const AchatForm = ({ onSubmit, idbloc, initialData }) => {
     }
   };
   return (
-    <div>
-      <h2>Formulaire Achat</h2>
+    <div className="achatform">
+      
       <form onSubmit={handleSubmit}>
-        <div>
           <label htmlFor="titreAchat">Titre Achat:</label>
           <input
             type="text"
             id="titreAchat"
+            className="titreAchat"
             value={titre}
             onChange={(e) => setTitre(e.target.value)}
           />
-        </div>
-        <div>
           <label htmlFor="montantAchat">Montant Achat:</label>
           <input
             type="number"
             id="montantAchat"
+            className="montantAchat"
             value={montant}
             onChange={(e) => setMontant(e.target.value)}
           />
-        </div>
         <button type="submit">{isUpdate ? 'Update' : 'Enregistrer'}</button>
       </form>
     </div>

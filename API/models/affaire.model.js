@@ -3,7 +3,9 @@ import mongoose from 'mongoose';
 const AffaireSchema = new mongoose.Schema({
     idUser: {
         type: [String],
-      
+    },
+    files :{
+        type: [String],
     },
     name: {
         type: String,

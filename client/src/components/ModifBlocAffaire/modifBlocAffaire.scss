@@ -1,0 +1,70 @@
+.modifblocaffaire {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+  
+    .result {
+      width: 100%;
+  
+      .tableresult {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+  
+        .icon {
+          border: 1px solid black;
+          border-radius: 5px;
+          cursor: pointer;
+          margin-left: 10px;
+          font-size: 18px;
+          padding: 2px;
+        }
+        thead{
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
+  
+        tr {
+          display: flex;
+  
+          th,
+          td {
+            text-align: center;
+           
+          }
+  
+          .type {
+            flex: 1;
+            text-align: left;
+          }
+  
+          td.nom {
+            flex: 4;
+            text-align: left;
+          }
+          th.nom {
+            flex: 4;
+            text-align: center;
+          }
+  
+          .montant {
+            flex: 2;
+            text-align: right;
+          }
+  
+          .actions {
+            flex: 2;
+          }
+          td{
+            font-weight: normal;
+          }
+        }
+      }
+    }
+  
+    button {
+      margin: 10px;
+    }
+  }
+  

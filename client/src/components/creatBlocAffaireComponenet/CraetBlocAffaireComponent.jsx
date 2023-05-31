@@ -4,6 +4,8 @@ import FormSelectFormAchatMo from "../FormSelectFormAchatMo/FormSelectFormAchatM
 import useFetch from "../../hooks/useFetch.js";
 import Modal from "../Modal/Modal.jsx";
 
+import "./creatBlocAffaireComponent.scss"
+
 const LineTable = (props) => {
   const { lines } = props;
   console.log(lines);
@@ -107,9 +109,9 @@ const CreatBlocAffaireComponent = ({ id }) => {
   const { data, loading, error, reFetch } = useFetch(`/blocAffaires/lignes/${idbloc}`);
 
   return (
-    <div>
+    <div className="creatblocaffairecomponent">
       <Modal title={titleBloc} content={renderModalContent()} isOpen={modalIsOpen} onClose={() => setModalIsOpen(false)} />
-      <button onClick={handleAddBlocClick}>+</button>
+      <button onClick={handleAddBlocClick}>Ajouter un bloc à l'Affaire</button>
     </div>
   );
 };

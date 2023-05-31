@@ -1,0 +1,72 @@
+.resultblocaffaire {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 900px;
+  
+    .result {
+      display: flex;
+      justify-content: space-evenly;
+      font-weight: bold;
+      text-transform: capitalize;
+      margin-bottom: 10px;
+    }
+  
+    .blocaffaire {
+      border: 1px solid black;
+      border-radius: 5px;
+      padding: 0px;
+      margin: 3px;
+    }
+  
+    .table {
+      border: 1px solid black;
+      border-radius: 5px;
+      padding: 0px;
+      margin: 3px;
+      background-color: rgb(223, 230, 233);
+      display: flex;
+  
+      ul {
+        margin: 5px;
+        list-style-type: none;
+        width: 100%;
+      }
+  
+      li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        font-weight: bold;
+        
+
+        .titleli {
+          flex: 7;
+          text-align: left;
+        }
+  
+        .spanli {
+          flex: 5;
+          text-align: center;
+        }
+  
+        .montantli {
+          flex: 2;
+          text-align: right;
+         
+        }
+        
+        .icon {
+          font-size: 30px;
+        }
+      }
+    }
+  
+    .modal-content {
+      width: 900px;
+      font-weight: normal;
+    }
+  }
+  

@@ -5,21 +5,28 @@ import FormSelectFormAchatMo from "../FormSelectFormAchatMo/FormSelectFormAchatM
 import useFetch from "../../hooks/useFetch";
 import Modal from "../Modal/Modal";
 
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import AttachEmailIcon from "@mui/icons-material/AttachEmail";
 import "./modifBlocAffaire.scss";
+import Tooltip from "../../Tooltip";
 
 const ModifBlocAffaire = (props) => {
   const idBloc = props.idbloc;
   const [showForm, setShowForm] = useState(false);
   const [currentLigne, setCurrentLigne] = useState(null);
-  const { data, loading, error, reFetch } = useFetch(`/blocAffaires/lignes/${idBloc}`);
+  const { data, loading, error, reFetch } = useFetch(
+    `/blocAffaires/lignes/${idBloc}`
+  );
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
+  
   const handleAddBlocClick = () => {
     setCurrentLigne(null);
     setShowForm("select");
     setModalIsOpen(true);
   };
-  
+
   const closeModal = () => {
     setModalIsOpen(false);
   };
@@ -29,7 +36,8 @@ const ModifBlocAffaire = (props) => {
     setCurrentLigne(null);
     await formData;
     reFetch();
-    setModalIsOpen(false); // ferme la fenêtre modale
+    setModalIsOpen(false); 
+    props.onUpdate();
   };
 
   const handleModifier = (ligne) => {
@@ -66,6 +74,7 @@ const ModifBlocAffaire = (props) => {
           throw new Error("Network response was not ok");
         }
         reFetch();
+        props.onUpdate();
       } else {
         console.log(
           "Neither titleLigneMo nor titleLigneAchat found in ligne:",
@@ -98,6 +107,7 @@ const ModifBlocAffaire = (props) => {
             idbloc={idBloc}
             onSubmit={handleFormSubmit}
             initialData={currentLigne}
+            onUpdate={handleFormSubmit}
           />
         );
       case "select":
@@ -114,38 +124,59 @@ const ModifBlocAffaire = (props) => {
   };
 
   return (
-    <div>
-      ModifBlocAffaire
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Nom</th>
-            <th>Montant</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((ligne) => (
-            <tr key={ligne._id}>
-              <td>{ligne.titleLigneMo || ligne.titleLigneAchat}</td>
-              <td>{ligne.montantLigneMo || ligne.montantLigneAchat} €</td>
-              <td>
-                <button onClick={() => handleModifier(ligne)}>Modifier</button>
-                <button onClick={() => handleSupprimer(ligne)}>
-                  Supprimer
-                </button>
-                <button onClick={() => handleAjouterDocument(ligne._id)}>
-                  Ajouter un document
-                </button>
-              </td>
+    <div className="modifblocaffaire">
+      <div className="result">
+        <table className="tableresult">
+          <thead>
+            <tr>
+              <th className="type">Type</th>
+              <th className="nom">Nom</th>
+              <th className="montant">Montant</th>
+              <th className="actions">Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {data.map((ligne) => (
+              <tr key={ligne._id}>
+                <td className="type">
+                  {ligne.titleLigneMo
+                    ? "MO"
+                    : ligne.titleLigneAchat
+                    ? "Achat"
+                    : ""}
+                </td> 
+                <td className="nom">
+                  {ligne.titleLigneMo || ligne.titleLigneAchat}
+                </td>
+                <td className="montant">
+                  {ligne.montantLigneMo || ligne.montantLigneAchat} €
+                </td>
+                <td className="actions">
+                  <span onClick={() => handleModifier(ligne)}>
+                  <Tooltip content="Modifier la ligne">
+                    <EditIcon className="icon" />
+                    </Tooltip>
+                  </span>
+                  <span onClick={() => handleSupprimer(ligne)}>
+                  <Tooltip content="Supprimer la ligne">
+                    <DeleteForeverIcon className="icon" />
+                    </Tooltip>
+                  </span>
+                  <span onClick={() => handleAjouterDocument(ligne._id)}>
+                  <Tooltip content="Ajouter un justificatif a la ligne">
+                    <AttachEmailIcon className="icon" />
+                    </Tooltip>
+                  </span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <div>
-        <button onClick={handleAddBlocClick}>+</button>
+        <button onClick={handleAddBlocClick}>Ajouter une ligne au bloc</button>
         <Modal
-          title="Fenêtre Modale"
+          title=""
           content={showForm && renderForm()}
           isOpen={modalIsOpen}
           onClose={closeModal}
@@ -154,5 +185,5 @@ const ModifBlocAffaire = (props) => {
     </div>
   );
 };
-
 export default ModifBlocAffaire;
+ 

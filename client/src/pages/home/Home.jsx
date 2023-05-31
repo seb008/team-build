@@ -28,7 +28,7 @@ const Home = () => {
       <div className="homeContainer">
         <div className="container">
         <ul>
-          <li>Vous avez {nombreAffaire} Affaires en cours.</li>
+          <li>Nombre d'Affaires en cours :{""} {nombreAffaire} </li>
           <li>wigget 2</li>
           <li>wigget 3</li>
         </ul>

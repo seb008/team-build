@@ -1,0 +1,17 @@
+.modal-header{
+    display: flex;
+    justify-content: space-between;
+
+    h2{
+        padding-left: 50px;
+        padding-bottom: 30px;
+    }
+    button{
+        width: 30px;
+        height: 30px;
+    }
+    .modal-content{
+        display: flex;
+        flex-direction: column;
+    }
+}

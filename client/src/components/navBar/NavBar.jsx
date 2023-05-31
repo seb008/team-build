@@ -1,5 +1,6 @@
 import "./navBar.scss";
 import { Link } from "react-router-dom";
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 
 const NavBar = () => {
   return (
@@ -15,7 +16,7 @@ const NavBar = () => {
         </div>
       </div>
       <div className="right">
-        <span>Marc </span>
+        <span className="user"><PersonOutlineIcon className="icon" /> Marc </span>
       </div>
     </div>
   );
