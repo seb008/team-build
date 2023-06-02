@@ -1,74 +1,90 @@
-.container{
-    display: flex;
-    height: 100vh;
-    margin: O;
-    padding: 0;
+.container {
+  display: flex;
+  height: 100vh;
+  margin: O;
+  padding: 0;
 
+  .left {
+    flex: 5;
+    margin: 30px;
+  }
 
-    .left{
-        flex: 5;
-        margin: 30px;
+  .toppage {
+    border: 1px solid black;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    width: 1000px;
+
+    .info {
+      background-color: rgb(223, 230, 233);
+      padding-left: 20px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+
+      h1 {
+        text-transform: capitalize;
+
+        color: rgb(18, 97, 227);
+      }
     }
+    .infoaffaire {
+      display: flex;
+      flex-direction: column;
 
-    .toppage{
-        border: 1px solid black;
-        border-bottom-right-radius: 10px;
-        border-bottom-left-radius: 10px; 
-        width: 1000px;
+      .affaireimg {
+        width: 70px;
+        height: 70px;
 
-        .info{
-            background-color: rgb(223, 230, 233);
-            padding-left: 20px;
-            padding-top: 5px;
-            padding-bottom: 5px;
-
-            h1{
-                text-transform: capitalize;
-               
-                color: rgb(18,97,227);
-            }
+        .icon {
+          font-size: 70px;
+          width: 70px;
+          height: 70px;
         }
-        .infoaffaire{
-            
-            display: flex;
-            flex-direction: column;
-            
-
-            .affaireimg{
-             
-               width: 70px;
-               height: 70px;
-       
-               .icon{
-                font-size: 70px;
-                width: 70px;
-                height: 70px;
-            
-               }
-            }
-            .autreinfo{
-                display: flex;
-                align-content: flex-start;
-                margin: 10px;
-                font-weight: bold;
-            .affairemonatant{
-                flex: 1;
-            }
-            .affaireadress{
-                flex: 1;
-            }
-            .affaireref{
-                flex: 1;
-            }
+      }
+      .autreinfo {
+        display: flex;
+        align-content: flex-start;
+        margin: 10px;
+        font-weight: bold;
+        .affairemonatant {
+          flex: 1;
         }
+        .affaireadress {
+          flex: 1;
         }
+        .affaireref {
+          flex: 1;
+        }
+      }
     }
+  }
 
+  .right {
+    flex: 1;
+    border-left: 2px solid rgb(223, 230, 233);
+    border-bottom: 2px solid rgb(223, 230, 233);
+    height: 700px;
 
-
-    .right{
-        flex: 1;
-        border: 1px solid red;
-        height: 100%;
+    ul {
+      width: 100%;
+      list-style-type: none;
     }
+    li {
+      display: flex;
+      align-items: left;
+      cursor: pointer;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: rgb(18, 97, 227);
+      
+      &:hover {
+        background-color: rgb(18, 97, 227);
+        color: wheat;
+        border-radius: 10px;
+        
+      }
+    }
+  }
 }

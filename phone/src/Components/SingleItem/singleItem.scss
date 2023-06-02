@@ -1,0 +1,47 @@
+.singleItem{
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    
+    .top{
+        display: flex;
+        padding-left: 15px;
+        .img{
+            height: 50px;
+            width: 50px;
+        }
+        h2{
+            padding-left: 15px;
+            padding-right: 10px;
+            font-weight: bold;
+            text-transform: capitalize;
+        }
+    }
+    .info{
+        
+        display: flex;
+        flex-direction: column;
+        padding-top: 10px;
+        margin-bottom: 10px;
+        label{
+             font-weight: bold;
+             border-top: 1px solid rgb(223, 230, 233);
+             padding: 10px;
+             padding-left: 30px;
+        }
+        span{
+            padding-bottom: 10px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        .description{
+            border-bottom:1px solid rgb(223, 230, 233);
+        }
+        .description.open  {
+            border-bottom: none;
+          }
+          .descriptionContent{
+            border-bottom:1px solid rgb(223, 230, 233);
+          }
+    }
+}

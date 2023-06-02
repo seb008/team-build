@@ -176,7 +176,7 @@ const ModifBlocAffaire = (props) => {
       <div>
         <button onClick={handleAddBlocClick}>Ajouter une ligne au bloc</button>
         <Modal
-          title=""
+          title="Ajouter une ligne au bloc"
           content={showForm && renderForm()}
           isOpen={modalIsOpen}
           onClose={closeModal}

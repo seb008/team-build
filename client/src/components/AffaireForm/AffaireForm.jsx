@@ -19,7 +19,7 @@ const AffaireForm = () => {
   useEffect(() => {
     if (shouldRefresh) {
       window.location.reload();
-    }
+    } 
   }, [shouldRefresh]);
 
   const handleChange = (e) => {

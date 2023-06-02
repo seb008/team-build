@@ -71,7 +71,8 @@ const CreatBlocAffaireComponent = ({ id }) => {
   const handleLigneValidation = async () => {
     reFetch(); 
   };
-
+ 
+  const onUpdate = () => {};
   const renderModalContent = () => (
           <>
           <LineTable lines={data} />
@@ -84,7 +85,7 @@ const CreatBlocAffaireComponent = ({ id }) => {
               onChange={handleTitleChange}
               placeholder="Titre du bloc"
             />
-            <button onClick={handleBlocValidation}>Valider</button>
+            <button onClick={handleBlocValidation}>Valider</button> 
           </div>
         ) : null}
         {idbloc !== "" && (
@@ -92,6 +93,7 @@ const CreatBlocAffaireComponent = ({ id }) => {
             <FormSelectFormAchatMo
               idbloc={idbloc}
               onSubmit={handleLigneValidation}
+              onUpdate = {onUpdate}
             />
           </div>
         )}

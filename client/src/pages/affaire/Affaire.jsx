@@ -8,6 +8,7 @@ import "./affaire.scss";
 import AffaireForm from "../../components/AffaireForm/AffaireForm";
 import Datatable from "../../components/datatable/Datatable";
 import { affairesColumns } from "../../datatablesourse.js";
+import { affairesCard } from "../../cardsource";
 import Modal from "../../components/Modal/Modal";
 
 const Affaire = () => {
@@ -74,7 +75,7 @@ const Affaire = () => {
               <Datatable columns={affairesColumns} />
             ) : (
               <div className="CardView">
-                <CardView />
+                <CardView info={affairesCard} />
               </div>
             )}
           </div>

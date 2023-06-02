@@ -31,9 +31,11 @@ const AffaireSchema = new mongoose.Schema({
     idBlocChantier: {
         type: [String],
     },
-    etatAffaire:{
-        type:Number,
-    },
+    etatAffaire: {
+        type: String,
+        enum: ["a compléter", "prête a éxé", "terminé"],
+        default: "a compléter",
+    }
 
 },
 { timestamps: true }

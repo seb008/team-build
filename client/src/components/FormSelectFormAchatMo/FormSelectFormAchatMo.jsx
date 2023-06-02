@@ -15,7 +15,7 @@ const FormSelectFormAchatMo = ({ idbloc, onSubmit }) => {
   const handleSelectChange = (event) => {
     setFormType(event.target.value);
   };
-
+  const onUpdate = () => {};
   return (
     <div>
       <div className="formligne">
@@ -24,7 +24,7 @@ const FormSelectFormAchatMo = ({ idbloc, onSubmit }) => {
           <option value="MO">MO</option>
           <option value="Achat">Achat</option>
         </select>
-        {formType === "MO" && <MoForm onSubmit={handleSubmit} idbloc={idbloc} />}
+        {formType === "MO" && <MoForm onSubmit={handleSubmit} idbloc={idbloc} onUpdate={onUpdate}/>}
         {formType === "Achat" && (
           <AchatForm onSubmit={handleSubmit} idbloc={idbloc} />
         )}

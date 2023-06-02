@@ -6,6 +6,7 @@ import NavBar from "../../components/navBar/NavBar.jsx";
 
 import LocationCityIcon from "@mui/icons-material/LocationCity";
 import "./creatBlocAffaire.scss";
+import ResultLignesMoAchats from "../../components/ResultLignesMoAchats/ResultLignesMoAchats.jsx";
 
 const CreatBlocAffaire = () => {
   const location = useLocation();
@@ -45,8 +46,19 @@ const CreatBlocAffaire = () => {
           <div className="formcreatblocaffairecomponent">
             <CreatBlocAffaireComponent id={id} />
           </div>
+          <div>
+            <ResultLignesMoAchats id={id}/>
+          </div>
         </div>
-        <div className="right">barre droite</div>
+        <div className="right">
+          <ul>
+            <li>Modifier l'Affaire</li>
+            <li>Assigner des colaborateurs</li>
+            <li>Centre de notification</li>
+            <li>Budget</li>
+            <li>Taches Restantes</li>
+          </ul>
+        </div>
       </div>
     </>
   );

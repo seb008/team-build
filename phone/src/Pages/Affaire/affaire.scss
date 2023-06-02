@@ -1,0 +1,29 @@
+.affaire{
+
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 60px;
+
+    h2{
+        margin-left: 15px;
+        margin-top: 15px;
+    }
+
+    .search-container{
+        display: flex;
+        align-items: center;
+        margin: 5px;
+        margin-left: 20px;
+        margin-top: 15px;
+        input{
+            margin-left: 10px;
+            border-radius: 10px;
+            width: 250px;
+            height: 25px;
+            background-color: rgb(223, 230, 233);;
+        }
+    }
+    .list{
+        margin: 5px;
+    }
+}

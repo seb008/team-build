@@ -26,3 +26,32 @@ export const affairesColumns = [
         width: 100,
       },
   ];
+
+  export const usersColumns = [
+    { field: "_id", headerName: "ID", width: 250 },
+    {
+      field: "pseudo",
+      headerName: "Pseudo",
+      width: 150,
+    },
+    {
+      field: "name",
+      headerName: "Nom",
+      width: 100,
+    },
+    {
+      field: "firstname",
+      headerName: "Firstname",
+      width: 230,
+    },
+    {
+      field: "email",
+      headerName: "email",
+      width: 100,
+    },
+    {
+        field: "isAdmin",
+        headerName: "isAdmin",
+        width: 100,
+      },
+  ];

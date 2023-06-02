@@ -1,0 +1,47 @@
+.users {
+  display: flex;
+  flex-direction: row-reverse;
+  .container {
+    flex: 5;
+    display: flex;
+    flex-direction: column;
+
+    .top {
+      display: flex;
+      justify-content: space-evenly;
+
+      .title {
+        flex: 5;
+        padding-left: 70px;
+        padding-top: 30px;
+      }
+      .viewModeButtons {
+        flex: 1;
+        padding-top: 100px;
+        button {
+          cursor: pointer;
+        }
+      }
+      .userform {
+        flex: 1;
+        padding-top: 15px;
+
+        .button {
+          padding-top: 10px;
+          padding-right: 30px;
+          padding-bottom: 10px;
+          padding-left: 30px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .CardView {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: space-evenly;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}

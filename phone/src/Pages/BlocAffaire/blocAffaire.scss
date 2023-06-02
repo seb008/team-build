@@ -1,0 +1,60 @@
+.blocAffaire {
+  display: flex;
+  flex-direction: column;
+  text-transform: capitalize;
+
+  .retour {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px;
+    color: rgb(18, 97, 227);
+  }
+
+  .top {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+
+    h4 {
+      display: flex;
+      align-items: center;
+      padding-top: 10px;
+    }
+  }
+
+  .bloc {
+   
+    border: 1px solid rgb(223, 230, 233);
+
+    .title {
+        padding: 10px;
+      font-weight: bold;
+    }
+
+    &.open {
+      .title {
+        background-color: rgb(18, 97, 227);
+        color: rgb(223, 230, 233);
+      }
+      .card{
+        border: 1px solid rgb(18, 97, 227);
+      }
+    }
+
+    .card {
+      border-top: 1px solid rgb(223, 230, 233);
+      padding-bottom: 5px;
+        margin-bottom: 5px;
+        padding-left: 15px;
+      .titleligne {
+        font-weight: bold;
+        padding-top: 10px;
+        padding-left: -10px;
+        padding-bottom: 10px;
+      }
+    }
+  }
+}

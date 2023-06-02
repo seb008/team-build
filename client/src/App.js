@@ -5,6 +5,7 @@ import Affaire from "./pages/affaire/Affaire";
 import Modal from "react-modal";
 import CreatBlocAffaire from "./pages/creatBlocAffaire/CreatBlocAffaire";
 import ResultFormBlocAffaire from "./components/ResultBlocAffaire/ResultBlocAffaire";
+import User from "./pages/User/User";
 
 // Définir l'élément racine de l'application pour l'accessibilité
 Modal.setAppElement("#root");
@@ -16,7 +17,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/affaires" element={<Affaire />} />
         <Route path="/affaires/:id" element={<CreatBlocAffaire />} />
-    
+        <Route path="/users" element={<User />} />
       </Routes>
     </Router>
   );

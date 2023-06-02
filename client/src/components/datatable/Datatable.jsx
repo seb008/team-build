@@ -56,12 +56,13 @@ const Datatable = ({ columns }) => {
               onClick={() => handleLinkClick(params.row._id)}
               style={{ textDecoration: "none" }}
             >
-              afficher affaire 
+              afficher {path}
             </Link>
 
             <div
               className="deleteButton"
               onClick={() => handleDelete(params.row._id)}
+              style={{ textDecoration: "none" , cursor:"pointer"}}
             >
               Delete
             </div>

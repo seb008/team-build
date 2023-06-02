@@ -1,29 +1,41 @@
 import "./sideBar.scss";
 import { Link, useLocation } from "react-router-dom";
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';import HomeWorkIcon from '@mui/icons-material/HomeWork';
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import HomeWorkIcon from '@mui/icons-material/HomeWork';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import NetworkPingIcon from '@mui/icons-material/NetworkPing';
 import LogoutIcon from '@mui/icons-material/Logout';
-const SideBar = () => {
+import pathToRegexp from 'path-to-regexp';
 
+const SideBar = () => {
   const location = useLocation();
-  const isActive = location.pathname === "/affaires";
+
+  const isPathActive = (path) => {
+    const regex = pathToRegexp(path);
+    return regex.test(location.pathname);
+  };
 
   return (
     <div className="sidebar">
       <div className="top">
-      <span>Gestion Projet</span>
+        <span>Gestion Projet</span>
         <ul>
-          <li><NotificationsNoneIcon className="icon"/>Notifications
-          
+          <li className={`sidebar-item ${isPathActive("/notifications") ? "active" : ""}`}>
+            <NotificationsNoneIcon className="icon" />
+            Notifications
           </li>
           <Link to="/affaires" style={{ textDecoration: "none" }}>
-            <li className={`sidebar-item ${isActive ? "active" : ""}`}>
-              <HomeWorkIcon className="icon"/>
+            <li className={`sidebar-item ${isPathActive("/affaires") ? "active" : ""}`}>
+              <HomeWorkIcon className="icon" />
               Affaire
             </li>
           </Link>
-          <li><PersonOutlineIcon className="icon"/>Users</li>
+          <Link to="/users" style={{ textDecoration: "none" }}>
+            <li className={`sidebar-item ${isPathActive("/users") ? "active" : ""}`}>
+              <PersonOutlineIcon className="icon" />
+              Users
+            </li>
+          </Link>
         </ul>
       </div>
       <div className="center">

@@ -24,15 +24,15 @@
     flex-direction: column;
     justify-content: space-between;
     flex: 3;
-    padding: 10px; /* Ajout d'une marge interne */
+    padding: 10px;
 
-    .title {
+    .card-field {
       font-weight: bold;
       text-transform: capitalize;
     }
 
     .adress {
-      margin-top: 10px; /* Ajout d'une marge supérieure */
+      margin-top: 10px;
     }
 
     .button {
@@ -42,7 +42,7 @@
       margin-left: 70px;
       border-radius: 5px;
       cursor: pointer;
-      align-self: flex-end; 
+      align-self: flex-end;
     }
   }
 }

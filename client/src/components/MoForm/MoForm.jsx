@@ -95,4 +95,4 @@ const MoForm = ({ onSubmit, idbloc, initialData, onUpdate }) => {
   );
 };
 
-export default MoForm;
+export default MoForm; 

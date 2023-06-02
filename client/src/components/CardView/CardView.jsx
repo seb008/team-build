@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
-import axios from "axios";
 import "./cardView.scss";
 
-const CardView = () => {
+const CardView = ({ info }) => {
   const location = useLocation();
   const path = location.pathname.split("/")[1];
   const [list, setList] = useState();
@@ -22,8 +21,8 @@ const CardView = () => {
 
   return (
     <>
-      {data?.map((i) => (
-        <div className="card" key={i._id}>
+      {list?.map((item) => (
+        <div className="card" key={item._id}>
           <div className="left">
             <div className="file">
               <img
@@ -33,11 +32,17 @@ const CardView = () => {
             </div>
           </div>
           <div className="right">
-            <div className="title">{i.name}</div>
-            <div className="adress">{i.adress}</div>
+            {info.map((field) => (
+              <div key={field.field} className="card-field">
+                {item[field.field]}
+              </div>
+            ))}
 
             <Link>
-              <button className="button" onClick={() => handleLinkClick(i._id)}>
+              <button
+                className="button"
+                onClick={() => handleLinkClick(item._id)}
+              >
                 Ouvrir
               </button>
             </Link>
