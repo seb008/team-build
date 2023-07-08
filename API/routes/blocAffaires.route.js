@@ -8,6 +8,7 @@ import {
   updateBlocAffaire,
 } from "../controllers/blocAffaire.controller.js";
 
+
 const router = express.Router();
 
 //creer bloc Affaire
@@ -27,5 +28,8 @@ router.get("/", getAllBlocAffaire);
 
 //Get Lignes
 router.get("/lignes/:id", getLignesAchatMo);
+
+
+
 
 export default router;

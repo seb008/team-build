@@ -1,17 +1,233 @@
 .homeContainer {
   display: flex;
-    width: 100%;
-    background-color: white;
+  width: 100%;
+  height: 100vh;
+
   .container {
     flex: 5;
-margin-left: 30px;
-      ul{
-    margin-top: 30px;
-    li{
-      list-style: none;
-      margin-bottom: 10px;
+    display: flex;
+    height: 100%;
+    margin: 0;
+
+    .title {
+      display: block;
+      background-color: rgb(18, 97, 227);
+      color: rgb(223, 230, 233);
+      width: 100%;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      padding-left: 25px;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .left {
+      flex: 2;
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      .liste {
+        ul {
+          list-style: none;
+          margin-top: 20px;
+          li {
+            margin: 5px;
+            color: rgb(18, 97, 227);
+          }
+        }
+        flex: 2;
+      }
+      .graph {
+        flex: 4;
+
+        .imggraph {
+          width: 500px;
+        }
+      }
+    }
+
+    .right {
+      flex: 5;
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+
+      .stat {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+
+        .cardcontainer {
+          display: flex;
+          justify-content: space-around;
+
+          .card {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 230px;
+            height: 100px;
+            position: relative;
+            border-radius: 5px;
+          }
+
+          .icon {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+
+            .icon2 {
+              width: 50px;
+              height: 50px;
+            }
+          }
+
+          .infocard {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            .chiffre {
+              font-weight: bold;
+              font-size: 24px;
+            }
+          }
+        }
+      }
+
+      .pourcentage {
+        flex: 5;
+        display: flex;
+        flex-direction: column;
+
+        .toppourcent {
+          flex: 2;
+          display: flex;
+          justify-content: space-around;
+          margin-bottom: 10px;
+          .bloc {
+            span {
+              font-weight: bold;
+              margin-top: 10px;
+            }
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            .result {
+              align-items: center;
+
+              font-size: 50px;
+              color: rgb(1, 215, 88);
+            }
+          }
+        }
+        .bottompourcent {
+          flex: 5;
+          .tablepourcentage {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            thead {
+              background-color: rgb(223, 230, 233);
+            }
+            tr {
+              display: flex;
+              justify-content: space-around;
+            }
+            tbody {
+              margin-top: 15px;
+            }
+          }
+        }
+      }
+
+      .notification {
+        flex: 3;
+        display: flex;
+        flex-direction: column;
+        .topnotification {
+          display: flex;
+          justify-content: space-between;
+          flex: 1;
+          background-color: rgb(150, 181, 231);
+          .right {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            .icon {
+              border: solid 1px rgb(18, 97, 227);
+              margin: 5px;
+            }
+            .input {
+              width: 200px;
+              height: 20px;
+            }
+          }
+          .left {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-right: 15px;
+            white-space: nowrap;
+
+            label{
+              margin-right: 10px;
+            }
+            .seletleft{
+              
+              width: 250px;
+              height: 27px;
+            }
+          }
+        }
+        .bottomnotification {
+          flex: 5;
+
+          .tablenotification {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+          
+            thead, tbody {
+              display: flex;
+              flex-direction: column;
+            }
+          
+            thead {
+              background-color: rgb(223, 230, 233);
+            }
+          
+            tr {
+              display: flex;
+            }
+          
+            th, td {
+              flex-basis: 0;
+              flex-grow: 1;
+              padding: 10px;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+          
+            tbody {
+              margin-top: 15px;
+              overflow-y: auto;
+            }
+          }
+        }
+      }
     }
   }
-  }
 
+  .sidebar {
+    flex: 1;
+    height: 100%;
+  }
 }

@@ -1,7 +1,17 @@
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .blocAffaire {
   display: flex;
   flex-direction: column;
   text-transform: capitalize;
+  margin-bottom: 60px;
+  flex: 1 0 auto; 
+  max-height: calc(100vh - 60px); 
+
 
   .retour {
     display: flex;
@@ -25,36 +35,43 @@
     }
   }
 
-  .bloc {
-   
-    border: 1px solid rgb(223, 230, 233);
+  .contain {
 
-    .title {
-        padding: 10px;
-      font-weight: bold;
-    }
+    margin-top: 10px;
+    overflow-y: scroll; 
 
-    &.open {
+    .bloc {
+      border: 1px solid rgb(223, 230, 233);
+
       .title {
-        background-color: rgb(18, 97, 227);
-        color: rgb(223, 230, 233);
+        padding: 10px;
+        font-weight: bold;
       }
-      .card{
-        border: 1px solid rgb(18, 97, 227);
-      }
-    }
 
-    .card {
-      border-top: 1px solid rgb(223, 230, 233);
-      padding-bottom: 5px;
+      &.open {
+        .title {
+          background-color: rgb(18, 97, 227);
+          color: rgb(223, 230, 233);
+        }
+        .card {
+          border: 1px solid rgb(18, 97, 227);
+        }
+      }
+
+      .card {
+        border-top: 1px solid rgb(223, 230, 233);
+        padding-bottom: 5px;
         margin-bottom: 5px;
         padding-left: 15px;
-      .titleligne {
-        font-weight: bold;
-        padding-top: 10px;
-        padding-left: -10px;
-        padding-bottom: 10px;
+        .titleligne {
+          font-weight: bold;
+          padding-top: 10px;
+          padding-left: -10px;
+          padding-bottom: 10px;
+        }
       }
     }
-  }
-}
+}}
+
+
+

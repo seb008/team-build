@@ -63,7 +63,7 @@ const Affaire = () => {
                 </button>
               )}
               <Modal
-                title="Fenêtre Modale"
+                title="Créer Nouvel Affaire"
                 content={<AffaireForm />}
                 isOpen={modalIsOpen}
                 onClose={closeModal}

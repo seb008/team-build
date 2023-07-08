@@ -1,5 +1,6 @@
 import Affaire from "../models/affaire.model.js";
 import BlocAffaire from "../models/blocAffaire.model.js";
+import LigneMo from "../models/ligneMo.model.js";
 
 //creat affaire
 
@@ -78,3 +79,73 @@ export const getBlocAffaireAffaire = async (req, res, next) => {
       next(err);
     }
   };
+
+  //get all ligne MO de l'affaire uniquement 
+  export const getLignesMoByAffaire = async (req, res, next) => {
+    try {
+      const affaire = await Affaire.findById(req.params.id);
+  
+      let allLignesMo = [];
+  
+      for (let blocId of affaire.idBlocAffaire) {
+        const bloc = await BlocAffaire.findById(blocId);
+        const lignesMo = await Promise.all(
+          bloc.idLigneMo.map(async (ligneId) => {
+            return await LigneMo.findById(ligneId);
+          })
+        );
+        allLignesMo = allLignesMo.concat(lignesMo);
+      }
+  
+      res.status(200).json(allLignesMo);
+    } catch (err) {
+      next(err);
+    }
+  };
+
+  //Get progress affaire LigneMo
+
+
+// get total progress of an Affaire
+export const getAffaireProgress = async (req, res, next) => {
+  try {
+    const affaireId = req.params.id;
+    const affaire = await Affaire.findById(affaireId);
+    if (!affaire) {
+      return res.status(404).json({ message: "Affaire introuvable" });
+    }
+    
+    let totalDuration = 0;
+    let completedDuration = 0;
+
+    // Loop over each BlocAffaire in the Affaire
+    for (const blocAffaireId of affaire.idBlocAffaire) {
+      const blocAffaire = await BlocAffaire.findById(blocAffaireId);
+
+      // Loop over each LigneMo in the BlocAffaire
+      for (const ligneMoId of blocAffaire.idLigneMo) {
+        const ligneMo = await LigneMo.findById(ligneMoId);
+
+        // Add to the total duration
+        totalDuration += ligneMo.duration;
+
+        // Add to the completed duration based on progress
+        completedDuration += ligneMo.duration * (ligneMo.progress / 100);
+      }
+    }
+
+    // Calculate the total progress
+    const totalProgress = completedDuration / totalDuration * 100;
+
+    // Calculate the remaining progress
+    const remainingProgress = 100 - totalProgress;
+
+    res.status(200).json({
+      totalProgress: totalProgress,
+      remainingProgress: remainingProgress
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+  

@@ -3,6 +3,7 @@ import useFetch from "../../hooks/useFetch.js";
 import CreatBlocAffaireComponent from "../../components/creatBlocAffaireComponenet/CraetBlocAffaireComponent";
 import ResultBlocAffaire from "../../components/ResultBlocAffaire/ResultBlocAffaire";
 import NavBar from "../../components/navBar/NavBar.jsx";
+import { Link } from "react-router-dom";
 
 import LocationCityIcon from "@mui/icons-material/LocationCity";
 import "./creatBlocAffaire.scss";
@@ -14,6 +15,7 @@ const CreatBlocAffaire = () => {
 
   const { data, loading, error } = useFetch(`/affaires/${id}`);
 
+  console.log(data)
   return (
     <>
       <NavBar />
@@ -56,7 +58,9 @@ const CreatBlocAffaire = () => {
             <li>Assigner des colaborateurs</li>
             <li>Centre de notification</li>
             <li>Budget</li>
+            <Link to={`/affaires/${id}/suivis`}>
             <li>Taches Restantes</li>
+            </Link>
           </ul>
         </div>
       </div>

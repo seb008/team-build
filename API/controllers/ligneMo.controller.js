@@ -31,16 +31,30 @@ export const creatLigneMo = async (req, res, next) => {
 //Update ligne Mo
 export const updateLigneMo = async (req, res, next) => {
   try {
-    const updateLigneMo = await LigneMo.findByIdAndUpdate(
-      req.params.id,
-      { $set: req.body },
-      { new: true }
-    );
-    res.status(200).json(updateLigneMo);
+    // Récupérer l'ID de la LigneMo à partir des paramètres de la requête
+    const id = req.params.id;
+
+    // Récupérer la nouvelle valeur de 'progress' à partir du corps de la requête
+    const nouvelleValeurDeProgress = req.body.progress;
+
+    // Trouver la LigneMo par son ID
+    const ligneMo = await LigneMo.findById(id);
+    if (!ligneMo) {
+      return res.status(404).send({ message: "LigneMo non trouvée" });
+    }
+
+    // Mettre à jour la valeur de 'progress'
+    ligneMo.progress = nouvelleValeurDeProgress;
+
+    // Sauvegarder la LigneMo mise à jour
+    await ligneMo.save();
+
+    res.status(200).json(ligneMo);
   } catch (err) {
     next(err);
   }
 };
+
 
 // Delete ligne Mo
 export const deleteLigneMo = async (req, res, next) => {

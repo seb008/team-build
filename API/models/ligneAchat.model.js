@@ -13,11 +13,17 @@ const LigneAchatSchema = new mongoose.Schema(
     idJustify: {
       type: [String],
     },
-    statusLigneAchat: {
+    etatLigneAchat: {
       type: String,
+      enum: ["a compléter", "prête a recupérer chez fournisseur", "prête a recupérer au dépot","prête livraison sur chantier"],
+      default: "a compléter",
+    },
+    dateLivraison:{
+      type: Date,
+      default: null
     },
   },
   { timestamps: true }
 );
 
-export default mongoose.model ("LigneAchat", LigneAchatSchema);
+export default mongoose.model("LigneAchat", LigneAchatSchema);

@@ -9,7 +9,9 @@ import lignesAchatRoute from "./routes/lignesAchat.route.js"
 import justifLignesAchatRoute from "./routes/justifLignesAchat.route.js"
 import lignesMoRoute from "./routes/lignesMo.route.js"
 import blocChantiersRoute from "./routes/blocChantiers.route.js"
-import notificationsRoute from "./routes/notifications.route.js"
+import conversationsRoute from "./routes/conversation.route.js"
+import messagesRoute from "./routes/messages.route.js"
+
 import cookieParser from "cookie-parser";
 import cors from "cors"
 
@@ -48,7 +50,8 @@ app.use("/api/lignesAchat", lignesAchatRoute);
 app.use("/api/justifLignesAchat", justifLignesAchatRoute);
 app.use("/api/lignesMo", lignesMoRoute);
 app.use("/api/blocChantiers", blocChantiersRoute);
-app.use("api/notifications" , notificationsRoute );
+app.use("/api/messages", messagesRoute);
+app.use("/api/conversations", conversationsRoute);
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
