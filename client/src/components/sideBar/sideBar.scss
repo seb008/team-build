@@ -5,23 +5,22 @@
   border-left: 2px solid rgb(223, 230, 233);
   border-bottom: 2px solid rgb(223, 230, 233);
   height: 700px;
- 
 
   .sidebar-link {
     text-decoration: none;
   }
-  .icon{
+  .icon {
     padding: 10px;
   }
   span {
     display: flex;
     justify-content: center; /* Centre le contenu horizontalement */
     align-items: center; /* Centre le contenu verticalement */
-    color: rgb(18,97,227);
+    color: rgb(18, 97, 227);
     text-align: center;
-    background-color:rgb(223, 230, 233);
+    background-color: rgb(223, 230, 233);
     width: 100%;
-    padding:10px;
+    padding: 10px;
   }
   ul {
     width: 100%;
@@ -35,36 +34,33 @@
     margin-top: 5px;
     margin-bottom: 5px;
     font-weight: bold;
-    color: rgb(18,97,227);
-    .icon{
-        text-decoration: none;
+    color: rgb(18, 97, 227);
+    .icon {
+      text-decoration: none;
     }
 
     &:hover {
-      background-color: rgb(18,97,227);
+      background-color: rgb(18, 97, 227);
       color: wheat;
       border-radius: 10px;
-      li{
-        .icon{
-            display: flex;
+      li {
+        .icon {
+          display: flex;
         }
       }
     }
-
-
   }
   .top {
     flex: 3;
-
   }
   .center {
     flex: 3;
   }
-  .bottom{
+  .bottom {
     flex: 1;
   }
-    .active {
-    background-color: rgb(18,97,227);
+  .active {
+    background-color: rgb(18, 97, 227);
     color: wheat;
     border-radius: 10px;
 

@@ -13,11 +13,11 @@ const LigneMoSchema = new mongoose.Schema(
     },
     duration: {
       type: Number,
-      require: true,
+
     },
     workersNeed: {
       type: Number,
-      require: true,
+     
     },
     workersId: {
       type: [String],
@@ -45,25 +45,6 @@ const LigneMoSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-LigneMoSchema.pre('findOneAndUpdate', async function (next) {
-  const docToUpdate = await this.model.findOne(this.getFilter());
-  
-  if (!docToUpdate) {
-    console.log("Erreur: document LigneMo non trouvé pour la mise à jour");
-    return next();
-  }
-  
-  if (docToUpdate.progress >= 100) {
-    this._update.etatLigneMo = "terminé";
-  } else if (docToUpdate.progress > 0) {
-    this._update.etatLigneMo = "en cour de réalisation";
-  } else {
-    this._update.etatLigneMo = "a faire";
-  }
-
-  
-  next();
-});
 
 
 

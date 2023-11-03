@@ -8,7 +8,7 @@ import "./moForm.scss";
 const MoForm = ({ onSubmit, idbloc, initialData, onUpdate }) => {
   const [titre, setTitre] = useState("");
   const [montant, setMontant] = useState(0);
-  const [jours, setJours] = useState(0);
+  const [jours, setJours] = useState(1);
   const [personnes, setPersonnes] = useState(0);
   const [startDate, setStartDate] = useState(null);
   const [selectedUserIds, setSelectedUserIds] = useState([]);
