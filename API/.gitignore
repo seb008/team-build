@@ -2,3 +2,6 @@
 
 # Node dependencies
 /node_modules
+
+# Miscellaneous
+/uploads

@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./achatForm.scss";
+import useUpdateLigneAchat from '../../hooks/useUpdateLigneAchat';
 
 const AchatForm = ({ onSubmit, idbloc, initialData }) => {
   const [titre, setTitre] = useState("");
   const [montant, setMontant] = useState(0);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const { execute } = useUpdateLigneAchat(initialData._id);
+
   const isUpdate = !!initialData;
 
   useEffect(() => {
@@ -21,19 +25,17 @@ const AchatForm = ({ onSubmit, idbloc, initialData }) => {
 
     try {
       if (isUpdate) {
-        const updatedLigneAchat = await axios.put(`/lignesAchat/${initialData._id}`, {
-          titleLigneAchat: titre,
-          montantLigneAchat: montant
-        });
-        console.log(updatedLigneAchat);
+        await execute({ title: titre, amount: montant, file: selectedFile});
+        onSubmit(formData);
       } else {
         const newLigneAchat = await axios.post(`/lignesAchat/${idbloc}`, {
           titleLigneAchat: titre,
           montantLigneAchat: montant
         });
         console.log(newLigneAchat);
+        await onSubmit(formData);
       }
-      await onSubmit(formData);
+
       setTitre("");
       setMontant(0);
       
@@ -61,6 +63,8 @@ const AchatForm = ({ onSubmit, idbloc, initialData }) => {
             value={montant}
             onChange={(e) => setMontant(e.target.value)}
           />
+          <label htmlFor="factureAchat">Facture Achat:</label>
+          <input id="factureAchat" type="file" onChange={(e) => setSelectedFile(e.target.files[0])}  />
         <button type="submit">{isUpdate ? 'Update' : 'Enregistrer'}</button>
       </form>
     </div>

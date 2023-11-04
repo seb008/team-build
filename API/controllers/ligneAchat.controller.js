@@ -31,6 +31,7 @@ export const creatLigneAchat = async (req, res, next) => {
 //Update ligne Achat
 export const updateLigneAchat = async (req,res,next) =>{
     try {
+        console.log('Uploded file: ', req.file);
         const updateLigneAchat = await LigneAchat.findByIdAndUpdate(
           req.params.id,
           { $set: req.body },

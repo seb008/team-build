@@ -6,6 +6,7 @@ import {
   getLigneAchat,
   updateLigneAchat,
 } from "../controllers/ligneAchat.controller.js";
+import uploadMiddleware from "../middlewares/upload.middleware.js";
 
 const router = express.Router();
 
@@ -13,7 +14,7 @@ const router = express.Router();
 router.post("/:blocAffaireId", creatLigneAchat);
 
 //Update ligne Achat
-router.put("/:id", updateLigneAchat);
+router.put("/:id", uploadMiddleware.single('invoice'), updateLigneAchat);
 
 // Delete ligne Achat
 router.delete("/:id/:blocAffaireId", deleteLigneAchat);
